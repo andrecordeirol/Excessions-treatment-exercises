@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import model.entities.Account;
+import model.exceptions.DomainException;
 
 public class Program {
 
@@ -11,7 +12,7 @@ public class Program {
 		
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		
+		try {
 		System.out.println("Enter account data");
 		System.out.print("Number: ");
 		int number = sc.nextInt();
@@ -28,7 +29,15 @@ public class Program {
 		System.out.println();
 		System.out.print("Enter amount for withdraw: ");
 		account.withdraw(sc.nextDouble());
+		
 		System.out.println("New balance: " + String.format("%.2f", account.getBalance()));
+		}
+		catch(DomainException e) {
+			System.out.println("Withdraw error: " + e.getMessage());
+		}
+	
+		
+		
 	
 		
 		
